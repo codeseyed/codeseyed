@@ -1,13 +1,9 @@
 <h1 align="center">Hi 👋, I'm Seyedmojtaba Seyedraoufi (Persian: سید مجتبی سید رئوفی)</h1>
-<h3 align="center">PhD candidate in Computational material science and informatics at Norwegian University of Life Sciences advised by Kristian Berland</h3>
+<h3 align="center">Postdoctoral Fellow Neuroimmunology Group, Institute of Basic Medical Sciences University of Oslo</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=codeseyed&label=Profile%20views&color=0e75b6&style=flat" alt="codeseyed" /> </p>
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=codeseyed" alt="codeseyed" /></a> </p>
-
-- 🔭 I’m currently working on [FOX project](https://www.nmbu.no/en/research/projects/fox)
-
-- 👨‍💻 All of my projects are available at [https://www.linkedin.com/in/mojtaba-s-039aa716a/](https://www.linkedin.com/in/mojtaba-s-039aa716a/)
 
 - 📫 How to reach me **seyedraoufi@gmail.com**
 
