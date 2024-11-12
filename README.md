@@ -9,7 +9,7 @@
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-<a href="[https://linkedin.com/in/www.linkedin.com/in/mojtaba-s-039aa716a](https://www.linkedin.com/in/seyedraoufi/)" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="www.linkedin.com/in/mojtaba-s-039aa716a" height="30" width="40" /></a>
+<a href="[[https://linkedin.com/in/www.linkedin.com/in/mojtaba-s-039aa716a](https://www.linkedin.com/in/seyedraoufi/)](https://www.linkedin.com/in/seyedraoufi/)" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="www.linkedin.com/in/mojtaba-s-039aa716a" height="30" width="40" /></a>
 <a href="https://instagram.com/s_seyedraoufi" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="s_seyedraoufi" height="30" width="40" /></a>
 </p>
 
