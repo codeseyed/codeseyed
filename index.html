@@ -34,7 +34,7 @@
   <div class="section">
     <h2>Research&nbsp;Interests</h2>
     <p>
-      My work centres on neuro‑immunology, with a special focus on how B‑cells
+      My work centres on neuro-immunology, with a special focus on how B-cells
       contribute to Multiple Sclerosis. Using bioinformatic pipelines I explore immune
       mechanisms, identify biomarkers and prioritise therapeutic targets.
     </p>
@@ -43,9 +43,9 @@
   <div class="section">
     <h2>Current&nbsp;Projects</h2>
     <ul>
-      <li><strong>Computational profiling of B‑cell repertoires in MS:</strong>
-          single‑cell and bulk sequencing to map clonal expansion and antigen specificity.</li>
-      <li><strong>Neuro‑immune signatures in CNS tissue:</strong>
+      <li><strong>Computational profiling of B-cell repertoires in MS:</strong>
+          single-cell and bulk sequencing to map clonal expansion and antigen specificity.</li>
+      <li><strong>Neuro-immune signatures in CNS tissue:</strong>
           integrative transcriptomics of immune infiltration in brain lesions.</li>
     </ul>
   </div>
@@ -60,21 +60,19 @@
   <div class="section">
     <h2>Contact</h2>
     <p>
-      I welcome collaboration and data‑analysis projects in neuro‑immunology and
+      I welcome collaboration and data-analysis projects in neuro-immunology and
       computational biology.
     </p>
   </div>
 
   <script>
   const API_URL  = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=100";
-  const LOCAL    = "publications.json";                     // written by GitHub Action
+  const LOCAL    = "publications.json";
 
-  // Use a modern, reliable CORS proxy (AllOrigins is unstable)
   function proxy(url){
     return `https://corsproxy.io/?${encodeURIComponent(url)}`;
   }
 
-  /** Turn one Cristin record into a <li> element */
   function format(pub){
     const title   = pub.title?.title || "Untitled";
     const year    = pub.year_published || "";
@@ -82,9 +80,7 @@
     return `<strong>${title}</strong>${year?` (${year})`:""}${journal?`, <em>${journal}</em>`:""}`;
   }
 
-  /** Render an array of Cristin records */
   function render(data){
-    // Some endpoints wrap the array in an object – pull it out if needed
     const items = Array.isArray(data) ? data : data?.hits ?? [];
     const list = document.getElementById("pub-list");
     list.innerHTML = items.length
@@ -92,7 +88,6 @@
       : "<li>No publications found.</li>";
   }
 
-  /** Try local JSON first, then proxy‑fetch if needed */
   async function loadPublications(){
     try{
       const r = await fetch(LOCAL);
