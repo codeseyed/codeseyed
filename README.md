@@ -1,7 +1,5 @@
 # Personal Website of [Your Name]
 
-This repository contains the source code for my personal academic website, hosted via [GitHub Pages](https://pages.github.com/).
-
 ## 🔍 About
 
 I'm an academic researcher in [your field, e.g., computational biology, AI, linguistics], with interests in:
@@ -10,7 +8,7 @@ I'm an academic researcher in [your field, e.g., computational biology, AI, ling
 - [Research question or focus 2]
 - [Project or topic area 3]
 
-You can view the live site at: [https://your-username.github.io](https://your-username.github.io)
+You can view the live site at: [https://codeseyed.github.io](https://your-username.github.io)
 
 ## 📁 Structure
 
