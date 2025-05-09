@@ -1,85 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Academic Researcher</title>
-    <style>
-        body {
-            font-family: Georgia, serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: #f9f9f9;
-            color: #333;
-        }
-        h1, h2 {
-            color: #1a1a1a;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .section {
-            margin-bottom: 2.5rem;
-        }
-        ul {
-            padding-left: 1.2rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Mojtaba Seyedraoufi | Neuroimmunology Researcher</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #1a1a1a;
+    }
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      margin-bottom: 2.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>Your Name</h1>
-    <p><strong>Position:</strong> Researcher / Assistant Professor / PhD Candidate<br>
-       <strong>Affiliation:</strong> Department, University<br>
-       <strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a><br>
-       <strong>GitHub:</strong> <a href="https://github.com/yourusername">yourusername</a>
+  <h1>Dr. Mojtaba Seyedraoufi</h1>
+  <p>
+    <strong>Position:</strong> Postdoctoral Fellow, 
+    <a href="https://www.med.uio.no/imb/english?vrtx=unit-view&areacode=511232" target="_blank">The Neuroimmunology Group</a><br>
+    <strong>Affiliation:</strong> Institute of Basic Medical Sciences, University of Oslo<br>
+    <strong>Email:</strong> <a href="mailto:seyedraoufi@gmail.com">seyedraoufi@gmail.com</a>
+  </p>
+
+  <div class="section">
+    <h2>Background</h2>
+    <p>
+      I hold a Ph.D. in Computational Materials Science from the Norwegian University of Life Sciences (NMBU), 
+      an M.S. in Theoretical (Quantum) Chemistry from the Norwegian University of Science and Technology (NTNU), 
+      and a Pharm.D. from Shiraz University of Medical Sciences (SUMS). 
+      My academic path bridges medical sciences, quantum chemistry, and computational biology.
     </p>
+  </div>
 
-    <div class="section">
-        <h2>Background</h2>
-        <p>
-            I am an academic researcher specializing in [your field, e.g., computational biology, machine learning, etc.]. 
-            My work focuses on understanding [brief, 1-2 sentence description of your general area of work].
-        </p>
-    </div>
+  <div class="section">
+    <h2>Research Interests</h2>
+    <p>
+      My primary research focus lies in neuroimmunology, with an emphasis on the role of B cells in Multiple Sclerosis (MS). 
+      I employ computational and bioinformatic approaches to investigate the immune mechanisms involved in neurodegenerative diseases, 
+      with the goal of identifying biomarkers and therapeutic targets.
+    </p>
+  </div>
 
-    <div class="section">
-        <h2>Research Questions</h2>
-        <ul>
-            <li>How does [research question 1] affect [field/topic]?</li>
-            <li>Can [methodology] improve our understanding of [topic]?</li>
-            <li>What are the implications of [question] in real-world applications?</li>
-        </ul>
-    </div>
+  <div class="section">
+    <h2>Current Projects</h2>
+    <ul>
+      <li><strong>Computational Profiling of B-cell Repertoires in MS:</strong> Analyzing single-cell and bulk sequencing data to characterize B-cell clonal expansion and antigen specificity.</li>
+      <li><strong>Neuroimmune Signatures in CNS Tissue:</strong> Integrating transcriptomic data to explore immune cell infiltration patterns in brain lesions.</li>
+    </ul>
+  </div>
 
-    <div class="section">
-        <h2>Current Projects</h2>
-        <ul>
-            <li><strong>Project Title 1</strong> – A short description of what this project investigates or aims to achieve.</li>
-            <li><strong>Project Title 2</strong> – A summary of the key methods and goals.</li>
-        </ul>
-    </div>
+  <div class="section">
+    <h2>Selected Publications</h2>
+    <p>Automatically loaded from <a href="https://app.cristin.no/persons/show.jsf?id=1229361" target="_blank">Cristin</a>:</p>
+    <ul id="publications-list">
+      <li>Loading publications...</li>
+    </ul>
+  </div>
 
-    <div class="section">
-        <h2>Publications</h2>
-        <ul>
-            <li>Author(s), <em>Title of the Paper</em>, <strong>Journal Name</strong>, Year. <a href="#">[PDF]</a></li>
-            <li>Author(s), <em>Title of the Paper</em>, <strong>Conference Name</strong>, Year. <a href="#">[Link]</a></li>
-        </ul>
-    </div>
+  <div class="section">
+    <h2>Contact</h2>
+    <p>
+      I welcome inquiries regarding collaborative opportunities, data analysis consultation, and scientific discussions in the field of neuroimmunology and computational biology.
+    </p>
+  </div>
 
-    <div class="section">
-        <h2>Contact</h2>
-        <p>
-            If you are interested in collaboration, mentoring, or learning more about my research, feel free to reach out by email.
-        </p>
-    </div>
+  <script>
+    const apiUrl = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=10";
+
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('publications-list');
+        list.innerHTML = ""; // Clear the 'Loading...' item
+
+        data.forEach(pub => {
+          const item = document.createElement('li');
+          const title = pub.title?.title || "Untitled";
+          const year = pub.year_published || "";
+          const journal = pub.journal?.title || pub.publication_instance?.type || "";
+          item.innerHTML = `<strong>${title}</strong> ${year ? '(' + year + ')' : ''}${journal ? ', <em>' + journal + '</em>' : ''}`;
+          list.appendChild(item);
+        });
+
+        if (data.length === 0) {
+          list.innerHTML = "<li>No publications found.</li>";
+        }
+      })
+      .catch(error => {
+        document.getElementById('publications-list').innerHTML = "<li>Failed to load publications.</li>";
+        console.error("Cristin fetch error:", error);
+      });
+  </script>
 
 </body>
 </html>
