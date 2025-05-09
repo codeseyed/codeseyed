@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> Mojtaba Seyedraoufi | Neuroimmunology Researcher</title>
+  <title>Mojtaba Seyedraoufi | Neuroimmunology Researcher</title>
   <style>
     body{font-family:Georgia,serif;max-width:900px;margin:0 auto;padding:2rem;
          background:#f9f9f9;color:#333;line-height:1.6}
@@ -13,11 +13,11 @@
   </style>
 </head>
 <body>
-  <h1>Dr.&nbsp;Mojtaba Seyedraoufi</h1>
+  <h1>Mojtaba Seyedraoufi</h1>
   <p>
     <strong>Position:</strong> Postdoctoral Fellow,&nbsp;
     <a href="https://www.med.uio.no/imb/english?vrtx=unit-view&areacode=511232"
-       target="_blank">The Neuroimmunology Group</a><br>
+       target="_blank" rel="noopener">The Neuroimmunology Group</a><br>
     <strong>Affiliation:</strong> Institute of Basic Medical Sciences, University of Oslo<br>
     <strong>Email:</strong> <a href="mailto:seyedraoufi@gmail.com">seyedraoufi@gmail.com</a>
   </p>
@@ -34,7 +34,7 @@
   <div class="section">
     <h2>Research&nbsp;Interests</h2>
     <p>
-      My work centres on neuro-immunology, with a special focus on how B-cells
+      My work centres on neuro‑immunology, with a special focus on how B‑cells
       contribute to Multiple Sclerosis. Using bioinformatic pipelines I explore immune
       mechanisms, identify biomarkers and prioritise therapeutic targets.
     </p>
@@ -43,9 +43,9 @@
   <div class="section">
     <h2>Current&nbsp;Projects</h2>
     <ul>
-      <li><strong>Computational profiling of B-cell repertoires in MS:</strong>
-          single-cell and bulk sequencing to map clonal expansion and antigen specificity.</li>
-      <li><strong>Neuro-immune signatures in CNS tissue:</strong>
+      <li><strong>Computational profiling of B‑cell repertoires in MS:</strong>
+          single‑cell and bulk sequencing to map clonal expansion and antigen specificity.</li>
+      <li><strong>Neuro‑immune signatures in CNS tissue:</strong>
           integrative transcriptomics of immune infiltration in brain lesions.</li>
     </ul>
   </div>
@@ -53,22 +53,26 @@
   <div class="section">
     <h2>Selected&nbsp;Publications</h2>
     <p>Loaded automatically from <a
-        href="https://app.cristin.no/persons/show.jsf?id=1229361" target="_blank">Cristin</a>:</p>
+        href="https://app.cristin.no/persons/show.jsf?id=1229361" target="_blank" rel="noopener">Cristin</a>:</p>
     <ul id="pub-list"><li>Loading&nbsp;publications…</li></ul>
   </div>
 
   <div class="section">
     <h2>Contact</h2>
     <p>
-      I welcome collaboration and data-analysis projects in neuro-immunology and
+      I welcome collaboration and data‑analysis projects in neuro‑immunology and
       computational biology.
     </p>
   </div>
 
   <script>
   const API_URL  = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=100";
-  const PROXY    = "https://api.allorigins.win/raw?url=";   // quick CORS bypass
   const LOCAL    = "publications.json";                     // written by GitHub Action
+
+  // Use a modern, reliable CORS proxy (AllOrigins is unstable)
+  function proxy(url){
+    return `https://corsproxy.io/?${encodeURIComponent(url)}`;
+  }
 
   /** Turn one Cristin record into a <li> element */
   function format(pub){
@@ -80,25 +84,32 @@
 
   /** Render an array of Cristin records */
   function render(data){
+    // Some endpoints wrap the array in an object – pull it out if needed
+    const items = Array.isArray(data) ? data : data?.hits ?? [];
     const list = document.getElementById("pub-list");
-    list.innerHTML = data.length
-      ? data.map(format).map(t=>`<li>${t}</li>`).join("")
+    list.innerHTML = items.length
+      ? items.map(format).map(t=>`<li>${t}</li>`).join("")
       : "<li>No publications found.</li>";
   }
 
-  /** Try local JSON first, then proxy-fetch if needed */
-  fetch(LOCAL)
-    .then(r => r.ok ? r.json() : Promise.reject())
-    .then(render)
-    .catch(() =>
-      fetch(PROXY + encodeURIComponent(API_URL))
-        .then(r=>r.json())
-        .then(render)
-        .catch(() => {
-          document.getElementById("pub-list")
-            .innerHTML = "<li>Failed to load publications.</li>";
-        })
-    );
+  /** Try local JSON first, then proxy‑fetch if needed */
+  async function loadPublications(){
+    try{
+      const r = await fetch(LOCAL);
+      if(r.ok) return render(await r.json());
+      throw new Error("No local file");
+    }catch{
+      try{
+        const r = await fetch(proxy(API_URL), {headers:{'Accept':'application/json'}});
+        return render(await r.json());
+      }catch(err){
+        console.error(err);
+        document.getElementById("pub-list").innerHTML = "<li>Failed to load publications.</li>";
+      }
+    }
+  }
+
+  loadPublications();
   </script>
 
 </body>
