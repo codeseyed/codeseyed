@@ -8,6 +8,6 @@ You can view the live site at: [https://codeseyed.github.io](https://codeseyed.g
 
 ## 📬 Contact
 
-Feel free to reach out via [your.email@example.com](mailto:seyedraoufi@gmail.com) for research collaboration or questions.
+Feel free to reach out via [seyedraoufi@gmail.com](mailto:seyedraoufi@gmail.com) for research collaboration or questions.
 
 ---
