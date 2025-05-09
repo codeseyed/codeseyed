@@ -8,7 +8,7 @@ I'm an academic researcher in [your field, e.g., computational biology, AI, ling
 - [Research question or focus 2]
 - [Project or topic area 3]
 
-You can view the live site at: [https://codeseyed.github.io](https://your-username.github.io)
+You can view the live site at: [https://codeseyed.github.io](https://codeseyed.github.io)
 
 ## 📁 Structure
 
