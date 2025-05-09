@@ -61,9 +61,18 @@
 
   <div class="section">
     <h2>Selected&nbsp;Publications</h2>
-    <p>Loaded automatically from <a
-        href="https://app.cristin.no/persons/show.jsf?id=1229361" target="_blank" rel="noopener">Cristin</a>:</p>
-    <ul id="pub-list"><li>Loading&nbsp;publications…</li></ul>
+    <ul>
+      <li><strong>Design of novel organic proton-transfer acid-base (anti-)ferroelectric salts with crystal structure prediction</strong> (Preprint, Oct 2024)</li>
+      <li><strong>Database mining and first-principles assessment of organic proton-transfer ferroelectrics</strong> (Article, Phys. Rev. Materials, May 2024)</li>
+      <li><strong>Ferroelectric Crystals of Globular Molecules: Cambridge Structural Database Mining and Computational Assessment</strong> (Article, Crystal Growth & Design, Nov 2023)</li>
+      <li><strong>Discovering Ferroelectric Plastic (Ionic) Crystals in the Cambridge Structural Database</strong> (Preprint, Jun 2023)</li>
+      <li><strong>Database mining and first-principles assessment of organic proton-transfer ferroelectrics</strong> (Preprint, Jun 2023)</li>
+      <li><strong>Rotationally-driven piezoelectricity: computational assessment of ionic plastic molecular crystals</strong> (Article, Acta Crystallographica A, Aug 2022)</li>
+      <li><strong>Screening the Cambridge Structural Database for ferroelectric molecular crystals</strong> (Article, Acta Crystallographica A, Aug 2022)</li>
+      <li><strong>Improved proton-transfer barriers with van der Waals density functionals: Role of repulsive non-local correlation</strong> (Article, J. Chem. Phys., Jun 2022)</li>
+      <li><strong>Improved proton-transfer barriers with van der Waals density functionals</strong> (Preprint, Apr 2022)</li>
+      <li><strong>Studying the optical gaps of retinal Schiff base in visual pigments using ab initio electronic-structure theory</strong> (Thesis, Feb 2020)</li>
+    </ul>
   </div>
 
   <div class="section">
@@ -73,50 +82,6 @@
       computational biology.
     </p>
   </div>
-
-  <script>
-    const API_URL = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=100";
-    const LOCAL = "publications.json";
-
-    function proxy(url) {
-      return `https://corsproxy.io/?${encodeURIComponent(url)}`;
-    }
-
-    function format(pub) {
-      const title = pub.title?.title || "Untitled";
-      const year = pub.year_published || "";
-      const journal = pub.journal?.title || pub.publication_instance?.type || "";
-      return `<strong>${title}</strong>${year ? ` (${year})` : ""}${journal ? `, <em>${journal}</em>` : ""}`;
-    }
-
-    function render(data) {
-      const items = Array.isArray(data) ? data : data?.hits ?? [];
-      const list = document.getElementById("pub-list");
-      list.innerHTML = items.length
-        ? items.map(format).map(t => `<li>${t}</li>`).join("")
-        : "<li>No publications found.</li>";
-    }
-
-    async function loadPublications() {
-      try {
-        const r = await fetch(LOCAL);
-        if (r.ok) return render(await r.json());
-        throw new Error("No local file");
-      } catch {
-        try {
-          const r = await fetch(proxy(API_URL), { headers: { 'Accept': 'application/json' } });
-          const json = await r.json();
-          console.log("Cristin API response:", json); // for debugging
-          return render(json);
-        } catch (err) {
-          console.error("Publication fetch failed:", err);
-          document.getElementById("pub-list").innerHTML = "<li>Failed to load publications.</li>";
-        }
-      }
-    }
-
-    loadPublications();
-  </script>
 
 </body>
 </html>
