@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mojtaba Seyedraoufi | Neuroimmunology Researcher</title>
   <style>
-    body{font-family:Georgia,serif;max-width:900px;margin:0 auto;padding:2rem;
-         background:#f9f9f9;color:#333;line-height:1.6}
-    h1,h2{color:#1a1a1a} a{color:#0056b3;text-decoration:none}
-    a:hover{text-decoration:underline} .section{margin-bottom:2.5rem}
-    ul{padding-left:1.2rem}
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2 { color: #1a1a1a }
+    a { color: #0056b3; text-decoration: none }
+    a:hover { text-decoration: underline }
+    .section { margin-bottom: 2.5rem }
+    ul { padding-left: 1.2rem }
   </style>
 </head>
 <body>
@@ -66,45 +75,47 @@
   </div>
 
   <script>
-  const API_URL  = "https://api.cristin.no/v2/results?contributor.cristin_person_id=1229361&sort=year&size=100";
-  const LOCAL    = "publications.json";
+    const API_URL = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=100";
+    const LOCAL = "publications.json";
 
-  function proxy(url){
-    return `https://corsproxy.io/?${encodeURIComponent(url)}`;
-  }
+    function proxy(url) {
+      return `https://corsproxy.io/?${encodeURIComponent(url)}`;
+    }
 
-  function format(pub){
-    const title   = pub.title?.title || "Untitled";
-    const year    = pub.year_published || "";
-    const journal = pub.journal?.title || pub.publication_instance?.type || "";
-    return `<strong>${title}</strong>${year?` (${year})`:""}${journal?`, <em>${journal}</em>`:""}`;
-  }
+    function format(pub) {
+      const title = pub.title?.title || "Untitled";
+      const year = pub.year_published || "";
+      const journal = pub.journal?.title || pub.publication_instance?.type || "";
+      return `<strong>${title}</strong>${year ? ` (${year})` : ""}${journal ? `, <em>${journal}</em>` : ""}`;
+    }
 
-  function render(data){
-    const items = Array.isArray(data) ? data : data?.hits ?? [];
-    const list = document.getElementById("pub-list");
-    list.innerHTML = items.length
-      ? items.map(format).map(t=>`<li>${t}</li>`).join("")
-      : "<li>No publications found.</li>";
-  }
+    function render(data) {
+      const items = Array.isArray(data) ? data : data?.hits ?? [];
+      const list = document.getElementById("pub-list");
+      list.innerHTML = items.length
+        ? items.map(format).map(t => `<li>${t}</li>`).join("")
+        : "<li>No publications found.</li>";
+    }
 
-  async function loadPublications(){
-    try{
-      const r = await fetch(LOCAL);
-      if(r.ok) return render(await r.json());
-      throw new Error("No local file");
-    }catch{
-      try{
-        const r = await fetch(proxy(API_URL), {headers:{'Accept':'application/json'}});
-        return render(await r.json());
-      }catch(err){
-        console.error(err);
-        document.getElementById("pub-list").innerHTML = "<li>Failed to load publications.</li>";
+    async function loadPublications() {
+      try {
+        const r = await fetch(LOCAL);
+        if (r.ok) return render(await r.json());
+        throw new Error("No local file");
+      } catch {
+        try {
+          const r = await fetch(proxy(API_URL), { headers: { 'Accept': 'application/json' } });
+          const json = await r.json();
+          console.log("Cristin API response:", json); // for debugging
+          return render(json);
+        } catch (err) {
+          console.error("Publication fetch failed:", err);
+          document.getElementById("pub-list").innerHTML = "<li>Failed to load publications.</li>";
+        }
       }
     }
-  }
 
-  loadPublications();
+    loadPublications();
   </script>
 
 </body>
