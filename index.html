@@ -3,41 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dr. Mojtaba Seyedraoufi | Neuroimmunology Researcher</title>
+  <title> Mojtaba Seyedraoufi | Neuroimmunology Researcher</title>
   <style>
-    body {
-      font-family: Georgia, serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      color: #1a1a1a;
-    }
-    a {
-      color: #0056b3;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .section {
-      margin-bottom: 2.5rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
+    body{font-family:Georgia,serif;max-width:900px;margin:0 auto;padding:2rem;
+         background:#f9f9f9;color:#333;line-height:1.6}
+    h1,h2{color:#1a1a1a} a{color:#0056b3;text-decoration:none}
+    a:hover{text-decoration:underline} .section{margin-bottom:2.5rem}
+    ul{padding-left:1.2rem}
   </style>
 </head>
 <body>
-
-  <h1>Dr. Mojtaba Seyedraoufi</h1>
+  <h1>Dr.&nbsp;Mojtaba Seyedraoufi</h1>
   <p>
-    <strong>Position:</strong> Postdoctoral Fellow, 
-    <a href="https://www.med.uio.no/imb/english?vrtx=unit-view&areacode=511232" target="_blank">The Neuroimmunology Group</a><br>
+    <strong>Position:</strong> Postdoctoral Fellow,&nbsp;
+    <a href="https://www.med.uio.no/imb/english?vrtx=unit-view&areacode=511232"
+       target="_blank">The Neuroimmunology Group</a><br>
     <strong>Affiliation:</strong> Institute of Basic Medical Sciences, University of Oslo<br>
     <strong>Email:</strong> <a href="mailto:seyedraoufi@gmail.com">seyedraoufi@gmail.com</a>
   </p>
@@ -45,71 +25,80 @@
   <div class="section">
     <h2>Background</h2>
     <p>
-      I hold a Ph.D. in Computational Materials Science from the Norwegian University of Life Sciences (NMBU), 
-      an M.S. in Theoretical (Quantum) Chemistry from the Norwegian University of Science and Technology (NTNU), 
-      and a Pharm.D. from Shiraz University of Medical Sciences (SUMS). 
-      My academic path bridges medical sciences, quantum chemistry, and computational biology.
+      I hold a Ph.D. in Computational Materials Science (NMBU), an M.S. in Theoretical
+      (Quantum) Chemistry (NTNU), and a Pharm.D. (SUMS). My training spans medical
+      sciences, quantum chemistry and computational biology.
     </p>
   </div>
 
   <div class="section">
-    <h2>Research Interests</h2>
+    <h2>Research&nbsp;Interests</h2>
     <p>
-      My primary research focus lies in neuroimmunology, with an emphasis on the role of B cells in Multiple Sclerosis (MS). 
-      I employ computational and bioinformatic approaches to investigate the immune mechanisms involved in neurodegenerative diseases, 
-      with the goal of identifying biomarkers and therapeutic targets.
+      My work centres on neuro-immunology, with a special focus on how B-cells
+      contribute to Multiple Sclerosis. Using bioinformatic pipelines I explore immune
+      mechanisms, identify biomarkers and prioritise therapeutic targets.
     </p>
   </div>
 
   <div class="section">
-    <h2>Current Projects</h2>
+    <h2>Current&nbsp;Projects</h2>
     <ul>
-      <li><strong>Computational Profiling of B-cell Repertoires in MS:</strong> Analyzing single-cell and bulk sequencing data to characterize B-cell clonal expansion and antigen specificity.</li>
-      <li><strong>Neuroimmune Signatures in CNS Tissue:</strong> Integrating transcriptomic data to explore immune cell infiltration patterns in brain lesions.</li>
+      <li><strong>Computational profiling of B-cell repertoires in MS:</strong>
+          single-cell and bulk sequencing to map clonal expansion and antigen specificity.</li>
+      <li><strong>Neuro-immune signatures in CNS tissue:</strong>
+          integrative transcriptomics of immune infiltration in brain lesions.</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>Selected Publications</h2>
-    <p>Automatically loaded from <a href="https://app.cristin.no/persons/show.jsf?id=1229361" target="_blank">Cristin</a>:</p>
-    <ul id="publications-list">
-      <li>Loading publications...</li>
-    </ul>
+    <h2>Selected&nbsp;Publications</h2>
+    <p>Loaded automatically from <a
+        href="https://app.cristin.no/persons/show.jsf?id=1229361" target="_blank">Cristin</a>:</p>
+    <ul id="pub-list"><li>Loading&nbsp;publications…</li></ul>
   </div>
 
   <div class="section">
     <h2>Contact</h2>
     <p>
-      I welcome inquiries regarding collaborative opportunities, data analysis consultation, and scientific discussions in the field of neuroimmunology and computational biology.
+      I welcome collaboration and data-analysis projects in neuro-immunology and
+      computational biology.
     </p>
   </div>
 
   <script>
-    const apiUrl = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=10";
+  const API_URL  = "https://api.cristin.no/v2/results?contributor=1229361&sort=year&size=100";
+  const PROXY    = "https://api.allorigins.win/raw?url=";   // quick CORS bypass
+  const LOCAL    = "publications.json";                     // written by GitHub Action
 
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById('publications-list');
-        list.innerHTML = ""; // Clear the 'Loading...' item
+  /** Turn one Cristin record into a <li> element */
+  function format(pub){
+    const title   = pub.title?.title || "Untitled";
+    const year    = pub.year_published || "";
+    const journal = pub.journal?.title || pub.publication_instance?.type || "";
+    return `<strong>${title}</strong>${year?` (${year})`:""}${journal?`, <em>${journal}</em>`:""}`;
+  }
 
-        data.forEach(pub => {
-          const item = document.createElement('li');
-          const title = pub.title?.title || "Untitled";
-          const year = pub.year_published || "";
-          const journal = pub.journal?.title || pub.publication_instance?.type || "";
-          item.innerHTML = `<strong>${title}</strong> ${year ? '(' + year + ')' : ''}${journal ? ', <em>' + journal + '</em>' : ''}`;
-          list.appendChild(item);
-        });
+  /** Render an array of Cristin records */
+  function render(data){
+    const list = document.getElementById("pub-list");
+    list.innerHTML = data.length
+      ? data.map(format).map(t=>`<li>${t}</li>`).join("")
+      : "<li>No publications found.</li>";
+  }
 
-        if (data.length === 0) {
-          list.innerHTML = "<li>No publications found.</li>";
-        }
-      })
-      .catch(error => {
-        document.getElementById('publications-list').innerHTML = "<li>Failed to load publications.</li>";
-        console.error("Cristin fetch error:", error);
-      });
+  /** Try local JSON first, then proxy-fetch if needed */
+  fetch(LOCAL)
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(render)
+    .catch(() =>
+      fetch(PROXY + encodeURIComponent(API_URL))
+        .then(r=>r.json())
+        .then(render)
+        .catch(() => {
+          document.getElementById("pub-list")
+            .innerHTML = "<li>Failed to load publications.</li>";
+        })
+    );
   </script>
 
 </body>
